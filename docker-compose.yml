@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ui:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    volumes:
+      - ./ui:/ui
+      - /ui/node_modules
+    ports:
+      - "3000:3000"
+    command: yarn start
