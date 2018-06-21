@@ -30,7 +30,7 @@ app.route('/processes')
         res.send(processes);
     })
     .post((req, res) => {
-        const newProcess = process(processes.length, req.body.name);
+        const newProcess = process(processes.length + 1, req.body.name);
         processes = [
             ...processes,
             newProcess,
