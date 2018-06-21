@@ -6,7 +6,7 @@ const Process = (props) => {
     <div>
       <div>{props.id}</div>
       <div>{props.name}</div>
-      <button>Remove</button>
+      <button onClick={() => props.handleRemoveProcess(props.id)}>Remove</button>
       <button>Edit</button>
       <button>Reset</button>
       <div>Visualisation here</div>
@@ -17,6 +17,7 @@ const Process = (props) => {
 Process.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  handleRemoveProcess: PropTypes.func,
 }
 
 export default Process;

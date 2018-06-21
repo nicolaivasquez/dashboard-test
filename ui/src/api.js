@@ -11,3 +11,7 @@ export const createProcess = (name) => {
     name,
   });
 }
+
+export const removeProcess = (id) => {
+  return axios.delete(`${baseUrl}/processes/${id}`);
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProcessList from './components/ProcessList';
-import {createProcess, fetchProcesses} from './api';
+import {createProcess, fetchProcesses, removeProcess} from './api';
 import AddProcess from './components/AddProcess';
 
 class App extends Component {
@@ -65,6 +65,15 @@ class App extends Component {
     }
   }
 
+  async handleRemoveProcess(id) {
+    try {
+      await removeProcess(id);
+      await this.populateProcessList();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   render() {
     return (
       <div>
@@ -77,6 +86,7 @@ class App extends Component {
         />
         <ProcessList
           processes={this.state.processes}
+          handleRemoveProcess={this.handleRemoveProcess.bind(this)}
         />
       </div>
     );

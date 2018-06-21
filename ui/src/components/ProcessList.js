@@ -10,6 +10,7 @@ const ProcessList = (props) => {
       props.processes.map((process) =>
         <Process
           key={process.id}
+          handleRemoveProcess={props.handleRemoveProcess}
           {...process}
         />
       )
@@ -20,6 +21,7 @@ const ProcessList = (props) => {
 
 ProcessList.propTypes = {
   processes: PropTypes.array.isRequired,
+  handleRemoveProcess: PropTypes.func,
 }
 
 export default ProcessList;
