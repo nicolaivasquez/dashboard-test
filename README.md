@@ -19,3 +19,9 @@ Simply run
 docker-compose up -d
 ```
 The webapp should be visible on http://(localhost/dockerhost):3000
+
+## Unit tests
+To run unit tests, assuming docker-compose is up, run:
+```
+docker-compose exec -e CI=true ui yarn test 
+```

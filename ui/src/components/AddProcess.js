@@ -19,7 +19,7 @@ const AddProcess = (props) => {
             <TextField label='Name' onChange={(e) => props.changeNewProcessName(e.target.value)} />
           </CardContent>
           <CardActions>
-            <Button onClick={props.handleAddProcess}>Create Process</Button>
+            <Button color='primary' onClick={props.handleAddProcess}>Create</Button>
           </CardActions>
         </Card>
       </form>

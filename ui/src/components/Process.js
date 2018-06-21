@@ -30,7 +30,11 @@ class Process extends React.Component {
     super(props);
 
     this.state = {
-      data: startData
+      data: startData,
+      metrics: {
+        MetricA: Math.floor(Math.random() * 100) + 1,
+        MetricB: Math.floor(Math.random() * 100) + 1
+      }
     };
 
     let data = startData;
@@ -80,7 +84,10 @@ class Process extends React.Component {
           <Button onClick={this.handleReset.bind(this)}>Reset</Button>
         </CardActions>
         <CardContent>
-          <Visualisation data={state.data} />
+          <Visualisation
+            data={state.data}
+            metrics={state.metrics}
+          />
         </CardContent>
       </Card>
     )

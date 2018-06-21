@@ -1,6 +1,7 @@
 version: '3'
 services:
   ui:
+    image: dashboard.test.ui:latest
     build:
       context: ./ui
       dockerfile: Dockerfile
@@ -11,6 +12,7 @@ services:
       - "3000:3000"
     command: yarn start
   server:
+    image: dashboard.test.server:latest
     build:
       context: ./server
       dockerfile: Dockerfile
