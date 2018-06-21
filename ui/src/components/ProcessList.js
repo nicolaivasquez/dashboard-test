@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 const ProcessList = (props) => {
   return (
     <div>
-      <Typography variant='title'>ActiveProcesses</Typography>
+      <Typography variant='title'>Active Processes</Typography>
       {
       props.processes.map((process) =>
         <Process
