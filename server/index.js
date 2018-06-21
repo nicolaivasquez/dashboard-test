@@ -40,8 +40,22 @@ app.route('/processes')
 
 app.route('/processes/:processId')
     .put((req, res) => {
-        console.log(req);
-        res.send('Test');
+        const targetProcess = processes.find((process) => process.id.toString() === req.params.processId.trim());
+        if (!targetProcess) {
+          res.send(404);
+        } else {
+          processes = processes.map((process) => {
+            if (process.id.toString() === req.params.processId.trim()) {
+              return {
+                ...process,
+                name: req.body.name,
+              }
+            }
+            return process;
+          })
+          res.send(200);
+        }
+
     })
     .delete((req, res) => {
         console.log(req.params);

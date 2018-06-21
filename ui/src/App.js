@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProcessList from './components/ProcessList';
-import {createProcess, fetchProcesses, removeProcess} from './api';
+import {changeProcessName, createProcess, fetchProcesses, removeProcess} from './api';
 import AddProcess from './components/AddProcess';
 
 class App extends Component {
@@ -18,7 +18,11 @@ class App extends Component {
 
   async populateProcessList() {
     try {
-      const {data: processes} = await fetchProcesses();
+      const {data} = await fetchProcesses();
+      const processes = data.map((process) => ({
+        ...process,
+        editable: false,
+      }));
 
       this.setState({
         processes,
@@ -74,6 +78,45 @@ class App extends Component {
     }
   }
 
+  handleChangeName(id, name) {
+    this.setState({
+      processes: this.state.processes.map((process) => {
+        if (process.id !== id) {
+          return process;
+        }
+        return {
+          ...process,
+          name,
+        }
+      })
+    })
+  }
+
+  async handleChangeProcessName(id) {
+    try {
+      const process = this.state.processes.find((process) => process.id === id);
+      await changeProcessName(id, process.name);
+      await this.populateProcessList();
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  toggleEditing(id) {
+    console.log('ToggleEditing', id)
+    this.setState({
+      processes: this.state.processes.map((process) => {
+        if (process.id === id) {
+          return {
+            ...process,
+            editable: true,
+          }
+        }
+        return process;
+      })
+    })
+  }
+
   render() {
     return (
       <div>
@@ -87,6 +130,9 @@ class App extends Component {
         <ProcessList
           processes={this.state.processes}
           handleRemoveProcess={this.handleRemoveProcess.bind(this)}
+          handleChangeName={this.handleChangeName.bind(this)}
+          handleChangeProcessName={this.handleChangeProcessName.bind(this)}
+          toggleEditing={this.toggleEditing.bind(this)}
         />
       </div>
     );

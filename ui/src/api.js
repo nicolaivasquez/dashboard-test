@@ -15,3 +15,9 @@ export const createProcess = (name) => {
 export const removeProcess = (id) => {
   return axios.delete(`${baseUrl}/processes/${id}`);
 }
+
+export const changeProcessName = (id, name) => {
+  return axios.put(`${baseUrl}/processes/${id}`, {
+    name,
+  })
+}

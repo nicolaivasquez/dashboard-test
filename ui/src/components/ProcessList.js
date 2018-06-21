@@ -11,6 +11,9 @@ const ProcessList = (props) => {
         <Process
           key={process.id}
           handleRemoveProcess={props.handleRemoveProcess}
+          handleChangeName={props.handleChangeName}
+          handleChangeProcessName={props.handleChangeProcessName}
+          toggleEditing={props.toggleEditing}
           {...process}
         />
       )
@@ -22,6 +25,9 @@ const ProcessList = (props) => {
 ProcessList.propTypes = {
   processes: PropTypes.array.isRequired,
   handleRemoveProcess: PropTypes.func,
+  handleChangeName: PropTypes.func,
+  handleChangeProcessName: PropTypes.func,
+  toggleEditing: PropTypes.func,
 }
 
 export default ProcessList;
