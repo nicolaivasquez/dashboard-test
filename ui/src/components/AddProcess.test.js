@@ -1,5 +1,6 @@
 import React from 'react';
 import AddProcess from './AddProcess';
+import Button from '@material-ui/core/Button';
 import {shallow} from 'enzyme';
 
 describe('AddProcess component', () => {
@@ -24,7 +25,7 @@ describe('AddProcess component', () => {
 
   describe('toggle add form', () => {
     it('should show add process button when show add form is set to false', () => {
-      const button = component.find('button[name="toggleAddProcess"]');
+      const button = component.find(Button);
 
       expect(button.length).toEqual(1);
     });

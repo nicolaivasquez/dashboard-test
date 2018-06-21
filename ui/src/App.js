@@ -3,6 +3,27 @@ import ProcessList from './components/ProcessList';
 import {changeProcessName, createProcess, fetchProcesses, removeProcess} from './api';
 import AddProcess from './components/AddProcess';
 
+import {createMuiTheme, withTheme} from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#757de8',
+      main: '#3f51b5',
+      dark: '#002984',
+      contrastText: '#ffffff'
+    },
+    secondary: {
+      light: '#9be7ff',
+      main: '#64b5f6',
+      dark: '#2286c3',
+      contrastText: '#f1f8e9'
+    }
+  }
+})
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +77,7 @@ class App extends Component {
 
   async handleAddProcess() {
     try {
-      const {data: process} = await createProcess(this.state.addForm.name);
+      await createProcess(this.state.addForm.name);
       this.setState({
         addForm: {
           showAddForm: false,
@@ -119,8 +140,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Dashboard</h2>
+      <Grid>
+        <Typography variant='headline'>Dashboard</Typography>
         <AddProcess
           {...this.state.addForm}
           handleShowAddForm={this.handleShowAddForm.bind(this)}
@@ -134,9 +155,9 @@ class App extends Component {
           handleChangeProcessName={this.handleChangeProcessName.bind(this)}
           toggleEditing={this.toggleEditing.bind(this)}
         />
-      </div>
+      </Grid>
     );
   }
 }
 
-export default App;
+export default withTheme(theme)(App);

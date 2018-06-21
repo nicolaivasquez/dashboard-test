@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Process from './Process';
+import Typography from '@material-ui/core/Typography';
 
 const ProcessList = (props) => {
   return (
     <div>
-      <h3>ActiveProcesses</h3>
+      <Typography variant='title'>ActiveProcesses</Typography>
       {
       props.processes.map((process) =>
         <Process
